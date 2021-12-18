@@ -1,14 +1,23 @@
 import usuarios from '../../models/usuarios'
 import proyectos from '../../models/proyectos'
 import bcryptjs from 'bcryptjs'
+import  Jwt from 'jsonwebtoken'
 
 const Mutation = {
-    async createUser(_,{input}){
+
+    async createUser(_,{input},{SECRET}){
 
         const salt = bcryptjs.genSaltSync(10)
         input.contrasena = bcryptjs.hashSync(input.contrasena, salt)
         const nuevoUsuario = new usuarios(input)
         await nuevoUsuario.save()
+        
+        const token = Jwt.sign({id: nuevoUsuario._id, rol: nuevoUsuario.rol },SECRET,{
+            expiresIn: 86400
+        })
+
+        nuevoUsuario.token = token
+
         return nuevoUsuario
     },
     async deleteUser(_,{_id}){

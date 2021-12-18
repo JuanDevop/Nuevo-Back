@@ -3,6 +3,7 @@
         Usuario(_id: String!): User
         Proyectos: [Proyecto]
         Proyecto(_id: String!): Proyecto
+        Login(email:String!,contrasena:String!):User
     }
 
     type Mutation {
@@ -26,13 +27,15 @@
     }
 
     type User {
-        _id: String!
-        nombres: String!
-        apellidos: String!
-        documento: String!
-        correo: String!
-        rol: String!
-        estado: String!
+        _id: String
+        nombres: String
+        apellidos: String
+        documento: String
+        correo: String
+        rol: String
+        estado: String
+        token: String
+        mensaje: String
     }
 
     type Proyecto{
