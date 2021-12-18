@@ -1,0 +1,129 @@
+   type Query { 
+        Usuarios: [User]
+        Usuario(_id: String!): User
+        Proyectos: [Proyecto]
+        Proyecto(_id: String!): Proyecto
+    }
+
+    type Mutation {
+        createUser(input: UserInput): User
+
+        deleteUser(_id: String!): User
+
+        updateUser(_id: String!,
+        nombres: String!,
+        apellidos: String!,
+        documento: String!,
+        correo: String!,
+        rol: String!,
+        estado: String!): User
+
+        createProyecto(input: ProyectoInput!): Proyecto
+
+        deleteProyecto(_id: String!): Proyecto
+
+        updateProyecto(_id: String!, input: ProyectoInput!):Proyecto
+    }
+
+    type User {
+        _id: String!
+        nombres: String!
+        apellidos: String!
+        documento: String!
+        correo: String!
+        rol: String!
+        estado: String!
+    }
+
+    type Proyecto{
+        _id: String!
+        nombre: String!
+        estado: String!
+        fase: String!
+        lider: String!
+        objetivosgenerales: [Objetivos]
+        objetivosespecificos: [Objetivos]
+        presupuesto: Float!
+        fechainicio: String!
+        fechafin: String!
+        estudiantes: [Estudiantes]
+        avances: [Avances]
+    }
+
+    type Objetivos{
+        objetivos: String!
+    }
+
+    type Estudiantes{
+        nombres: String!
+        apellidos: String!
+        correo: String!
+        estado: String!
+    }
+
+    type Avances{
+        avance: String!
+    }
+
+    input UserInput {
+        nombres: String!
+        apellidos: String!
+        documento: String!
+        correo: String!
+        contrasena: String!
+        rol: String!
+        estado: String!
+    }
+
+    input UserUpdate {
+        nombres: String!
+        apellidos: String!
+        documento: String!
+        correo: String!
+        rol: String!
+        estado: String!
+    }
+
+    input ProyectoInput{
+        nombre: String!
+        estado: String!
+        fase: String!
+        lider: String!
+        objetivosgenerales: [Objetives]
+        objetivosespecificos: [Objetives]
+        presupuesto: Float!
+        fechainicio: String!
+        fechafin: String!
+        estudiantes: [Students]
+        avances: [Advance]
+    }
+
+    input Objetives{
+        objetivos: String!
+    }
+
+    input Students{
+        nombres: String!
+        apellidos: String!
+        correo: String!
+        estado: String!
+    }
+
+    input Advance{
+        avance: String!
+    }
+
+    input ProyectoUpdate{
+        nombre: String!
+        estado: String!
+        fase: String!
+        lider: String!
+        objetivosgenerales: String!
+        objetivosespecificos: String!
+        presupuesto: Float!
+        fechafin: String!
+        estudiantes: [Students]
+        avances: [Advance]
+    }
+    
+
